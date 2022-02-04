@@ -44,7 +44,7 @@ from django.contrib.auth.models import User  # Required to assign User as a borr
 class ExemplarLivro(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="identificador unico para exemplar")
     livro = models.ForeignKey(Livro, on_delete=models.SET_NULL, null=True)
-    editoto = models.CharField(max_length=200)
+    editora = models.CharField(max_length=200)
     data_devolucao = models.DateField(null=True, blank=True)
 
     SITUACAO_EXEMPLAR = (

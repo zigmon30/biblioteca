@@ -1,0 +1,24 @@
+
+
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Local Library Home</h1>
+
+<div>
+  {% load static %}
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/CheHigh.jpg/245px-CheHigh.jpg">
+</div>
+
+
+<p>REGISTROS DA BIBLIOTECA:</p>
+<ul>
+  <li><strong>LIVROS:</strong> {{ num_livros }}</li>
+  <li><strong>EXEMPLARES:</strong> {{ num_exemplares }}</li>
+  <li><strong>EXEMPLARES DISPONIVEIS:</strong> {{ num_exemplares_deisponiveis }}</li>
+  <li><strong>AUTORES:</strong> {{ num_autores }}</li>
+</ul>
+
+
+
+{% endblock %}
