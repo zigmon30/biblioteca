@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -31,6 +32,9 @@ class Livro(models.Model):
 
     class Meta:
         ordering = ['titulo', 'autor']
+
+    def get_absolute_url(self):
+        return reverse('livro-detalhes', args=[str(self.id)])
 
     def __str__(self):
         return self.titulo
