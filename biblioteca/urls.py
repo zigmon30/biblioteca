@@ -26,5 +26,9 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    path('catalogo/', include ('catalogo.urls')),
+    path('catalogo/', include('catalogo.urls')),
+]
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
