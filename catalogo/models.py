@@ -41,15 +41,17 @@ class Livro(models.Model):
 
 
 import uuid
-
-from django.contrib.auth.models import User  # Required to assign User as a borrower
+from django.contrib.auth.models import User
+from datetime import date
 
 
 class ExemplarLivro(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text="identificador unico para exemplar")
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Identificador único para este exemplar em toda a biblioteca.')
     livro = models.ForeignKey(Livro, on_delete=models.SET_NULL, null=True)
     editora = models.CharField(max_length=200)
     data_devolucao = models.DateField(null=True, blank=True)
+    usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     SITUACAO_EXEMPLAR = (
         ('m', 'Manutencao'),
@@ -63,8 +65,14 @@ class ExemplarLivro(models.Model):
         choices=SITUACAO_EXEMPLAR,
         blank=True,
         default='m',
-        help_text='situacao do exemplar'
+        help_text='Situação do exemplar',
     )
+
+    @property
+    def esta_atrasado(self):
+        if self.data_devolucao and date.today() > self.data_devolucao:
+            return True
+        return False
 
     class Meta:
         ordering = ['data_devolucao']

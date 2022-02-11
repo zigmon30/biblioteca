@@ -7,11 +7,11 @@
     <p><strong>Resumo:</strong> {{ livro.resumo }}</p>
     <p><strong>ISBN:</strong> {{ livro.isbn }}</p>
     <p><strong>Linguagem:</strong> {{ livro.linguagem }}</p>
-    <p><strong>Gênero:</strong>
-        {% for genero in livro.genero.all %}
+    <p><strong>Gênero:</strong> 
+        {% for genero in livro.genero.all %} 
             {{ genero }}
             {% if not forloop.last %}
-                ,
+                , 
             {% endif %}
         {% endfor %}</p>
 
@@ -26,9 +26,9 @@
                 {% elif copy.situacao == 'm' %}
                     text-danger
                 {% else %}text-warning{% endif %}">
-
+                
                 {{ copy.get_situacao_display }}</p>
-
+            
             {% if copy.situacao != 'd' %}
                 <p><strong>Deve ser devolvido em:</strong> {{copy.data_devolucao}}</p>
             {% endif %}
@@ -36,6 +36,6 @@
             <p><strong>Editora:</strong> {{copy.editora}}</p>
             <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
         {% endfor %}
-
+        
     </div>
 {% endblock %}
